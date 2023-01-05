@@ -1,13 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
-import Principal from './PAGES/Principal';
+import React from "react";
+import Rotas from "./Route/Route";
+import { BrowserRouter } from "react-router-dom";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <Principal/>
-    </div>
+    <BrowserRouter>
+      <Rotas />
+    </BrowserRouter>
   );
 }
-
-export default App;

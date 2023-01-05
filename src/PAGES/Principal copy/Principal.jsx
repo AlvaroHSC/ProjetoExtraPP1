@@ -7,7 +7,7 @@ import IFPE from "./../../img/IFPE.png";
 export default function Principal() {
 
   function click() {
-      window.open('/disciplina', '_blank')
+    alert('click ');
   }
 
   return (
