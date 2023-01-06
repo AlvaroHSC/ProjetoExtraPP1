@@ -21,6 +21,13 @@ export const Box = styled.div`
   background-repeat: no-repeat; 
   padding: 10px 14px;
 `;
+export const BoxInput = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin: 4px; 
+  padding: 10px 14px;
+`;
 
 export const InputBox = styled.div`
   width: 250px

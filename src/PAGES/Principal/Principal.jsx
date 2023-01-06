@@ -3,11 +3,13 @@ import * as s from "./stylePrinc";
 
 import Logo from "./../../img/Logo.png";
 import IFPE from "./../../img/IFPE.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Principal() {
+  const navigate = useNavigate();
 
   function click() {
-      window.open('/disciplina', '_blank')
+    window.open("/disciplina", "_blank");
   }
 
   return (
@@ -16,9 +18,15 @@ export default function Principal() {
         <img src={Logo} />
 
         <s.Box>
-          
           <s.BoxForm>
             <h1>LOGIN</h1>
+
+            <s.BoxInput>
+              <h2>ALUNO</h2>
+              <input type="checkbox" id="aluno" />
+              <h2>PROFESSOR</h2>
+              <input type="checkbox" id="professor" />
+            </s.BoxInput>
 
             <s.InputBox>
               <input type="text" placeholder="Login..." />
@@ -27,9 +35,10 @@ export default function Principal() {
               <input type="password" p laceholder="Senha..." />
             </s.InputBox>
 
-            <s.InputBox onClick={() => click()}>
-              <div>Logar</div>  
-            </s.InputBox>
+            <button onClick={() => click()}>
+              <div>Logar</div>
+            </button>
+            <button onClick={() => navigate("/aluno")}>Cadastrar-se</button>
           </s.BoxForm>
         </s.Box>
 
