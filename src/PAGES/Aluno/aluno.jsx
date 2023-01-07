@@ -4,8 +4,11 @@ import axios, { Axios } from 'axios'
 
 import Logo from "./../../img/Logo.png";
 import IFPE from "./../../img/IFPE.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Aluno() {
+  const navigate = useNavigate()
+
   //gravar disciplina
   function gravar() {
     let campos = document.querySelectorAll(".gravar_");
@@ -39,8 +42,10 @@ export default function Aluno() {
       if (respCorreio.data.status) {
         let p = respCorreio.data
 
-        document.getElementById('logradouro').value = respCorreio.data.address;
-        // document.querySelector('#logradouro').value = p.address.value;
+        document.getElementById('logradouro').value = p.address;
+        document.getElementById('cidade').value = p.city;
+        document.getElementById('bairro').value = p.district;
+        document.getElementById('uf').value = p.state;
 
       } else {
         console.log('FALHA')
@@ -116,6 +121,9 @@ export default function Aluno() {
           </s.BotaoDiv>
           <s.BotaoDiv onClick={() => novo()}>
             <h2>Novo</h2>
+          </s.BotaoDiv>
+          <s.BotaoDiv onClick={() => navigate(-1)}>
+            <h2>Voltar</h2>
           </s.BotaoDiv>
         </s.Box>
       </s.Pagina>

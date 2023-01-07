@@ -23,9 +23,9 @@ export default function Principal() {
 
             <s.BoxInput>
               <h2>ALUNO</h2>
-              <input type="checkbox" id="aluno" />
+              <input type="checkbox" id="aluno" onClick={() => navigate("/aluno")}/>
               <h2>PROFESSOR</h2>
-              <input type="checkbox" id="professor" />
+              <input type="checkbox" id="professor" onClick={() => navigate("/professor")}/>
             </s.BoxInput>
 
             <s.InputBox>

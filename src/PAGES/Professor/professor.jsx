@@ -3,8 +3,12 @@ import * as s from "./styleprof";
 
 import Logo from "./../../img/Logo.png";
 import IFPE from "./../../img/IFPE.png";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Professor() {
+  const navigate = useNavigate();
+
   //gravar disciplina
   function gravar() {
     let campos = document.querySelectorAll(".gravar_");
@@ -25,6 +29,28 @@ export default function Professor() {
       valores: values
     }
     console.log("obj", obj);
+  }
+
+  async function correios() {
+    let cep = document.querySelector('.cep_').value;
+
+    try {
+      let respCorreio = await axios.get(`https://cdn.apicep.com/file/apicep/${cep}.json`)
+
+      if (respCorreio.data.status) {
+        let p = respCorreio.data
+
+        document.getElementById('logradouro').value = p.address;
+        document.getElementById('cidade').value = p.city;
+        document.getElementById('bairro').value = p.district;
+        document.getElementById('uf').value = p.state;
+
+      } else {
+        console.log('FALHA')
+      }
+    } catch (e) {
+      console.log('e', e)
+    }
   }
 
   function novo() {
@@ -66,7 +92,7 @@ export default function Professor() {
           <s.BoxForm>
             <h3>ENDEREÇO</h3>
             <s.InputBox>
-              <input className="gravar_ apagar_" title="cep" id="cep" />
+              <input className="gravar_ apagar_ cep_" title="cep" id="cep" onBlur={() => correios()}/>
             </s.InputBox>
             <s.InputBox>
               <input className="gravar_ apagar_" title="logradouro:" id="logradouro" />
@@ -93,6 +119,9 @@ export default function Professor() {
           </s.BotaoDiv>
           <s.BotaoDiv onClick={() => novo()}>
             <h2>Novo</h2>
+          </s.BotaoDiv>
+          <s.BotaoDiv onClick={() => navigate(-1)}>
+            <h2>Voltar</h2>
           </s.BotaoDiv>
         </s.Box>
       </s.Pagina>
