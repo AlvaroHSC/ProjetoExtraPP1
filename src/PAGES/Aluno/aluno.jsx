@@ -1,5 +1,6 @@
 import React from "react";
 import * as s from "./stylealuno";
+import axios, { Axios } from 'axios'
 
 import Logo from "./../../img/Logo.png";
 import IFPE from "./../../img/IFPE.png";
@@ -25,6 +26,28 @@ export default function Aluno() {
       valores: values
     }
     console.log("obj", obj);
+  }
+
+  async function correios() {
+    let cep = document.querySelector('.cep_').value;
+    console.log('cep :>> ', cep);
+
+    try {
+      let respCorreio = await axios.get(`https://cdn.apicep.com/file/apicep/${cep}.json`)
+
+      console.log(respCorreio.data);
+      if (respCorreio.data.status) {
+        let p = respCorreio.data
+
+        document.getElementById('logradouro').value = respCorreio.data.address;
+        // document.querySelector('#logradouro').value = p.address.value;
+
+      } else {
+        console.log('FALHA')
+      }
+    } catch (e) {
+      console.log('e', e)
+    }
   }
 
   function novo() {
@@ -62,14 +85,14 @@ export default function Aluno() {
               <input className="gravar_ apagar_" title="RG:" id="rg" />
             </s.InputBox>
           </s.BoxForm>
-          
+
           <s.BoxForm>
             <h3>ENDEREÇO</h3>
             <s.InputBox>
-              <input className="gravar_ apagar_" title="cep" id="cep" />
+              <input className="gravar_ apagar_ cep_" title="cep" id="cep" onBlur={() => correios()} />
             </s.InputBox>
             <s.InputBox>
-              <input className="gravar_ apagar_" title="logradouro:" id="logradouro" />
+              <input className="gravar_ apagar_ logradouro_" title="logradouro:" id="logradouro" />
             </s.InputBox>
             <s.InputBox>
               <input
