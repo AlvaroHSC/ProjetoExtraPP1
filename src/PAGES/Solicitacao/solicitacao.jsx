@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import * as s from "./styleSolic";
-
 import Logo from "./../../img/Logo.png";
 import IFPE from "./../../img/IFPE.png";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -10,9 +9,9 @@ export default function Solicitacao() {
   const [exibirLista, setExibirLista] = useState(true);
   const [lista, setLista] = useState([]);
   const navigate = useNavigate();
-  
-  useEffect((e) => {
-      Pesqlista()
+
+  useEffect(() => {
+    Pesqlista()
   }, [])
 
   function gravar() {
@@ -33,19 +32,18 @@ export default function Solicitacao() {
   }
 
   async function Pesqlista() {
-    // try {
-    //   let respLista = await axios.get("https://pokeapi.co/api/v2/pokemon");
+    try {
+      let respLista = await axios.get("https://api.adviceslip.com/advice");
 
-    //   console.log('respLista.data.resultado', respLista.data.resultado)
-    //   if (respLista.data.status) {
-    //     setLista(respLista.data.resultado);
-    //   } else {
-    //     setLista([])
-    //     console.log("falha", respLista.data.mensagem);
-    //   }
-    // } catch (e) {
-    //   console.log("falha", e);
-    // }
+      if (respLista.data) {
+        setLista([respLista.data.slip]);
+      } else {
+        setLista([])
+        console.log("falha", respLista.data.mensagem);
+      }
+    } catch (e) {
+      console.log("falha", e);
+    }
   }
 
   function click() {
@@ -59,10 +57,14 @@ export default function Solicitacao() {
         <h1>Lista de Solicitações</h1>
         <s.Box>
           <s.BoxForm>
-            <s.InputBox>
+            {
+              lista.map(e => (
+                <s.InputBox>{e?.id} - {e?.advice}
+                </s.InputBox>
+              ))
 
-            </s.InputBox>
-          </s.BoxForm>
+              }
+              </s.BoxForm>
         </s.Box>
         <s.BotaoDiv
           onClick={() => {
