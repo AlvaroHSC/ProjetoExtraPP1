@@ -9,7 +9,7 @@ export default function Principal() {
   const navigate = useNavigate();
 
   function click() {
-    window.open("/disciplina", "_blank");
+    navigate("/solicitacao");
   }
 
   return (

@@ -6,7 +6,14 @@ export const Geral = styled.div`
   padding: 4px;
 `;
 
-export const Pagina = styled.div`
+export const PaginaLista= styled.div`
+  display: ${props => props.onOff ? 'block' : 'none'};
+  width: 100%;
+  heigth: auto;
+`;
+
+export const PaginaCad = styled.div`
+  display: ${props => props.onOff ? 'block' : 'none'};
   width: 100%;
   heigth: auto;
 `;
@@ -14,20 +21,28 @@ export const Pagina = styled.div`
 export const Box = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
+  display: block;
   margin: 4px;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   padding: 10px 14px;
-
-
 `;
 
 export const InputBox = styled.div`
-  width: 250px
-  flex: 1;
-  margin: 2px;
-  padding: 2px;
+width: 250px
+display: flex;
+flex-direction: column;
+margin: 2px;
+padding: 2px;
 
+h2{
+  padding: 0px;
+  margin: 0px;
+  font-size: 10px
+  text-align: left;    
+}
+input{
+  width: 100%
+}
 `;
 
 export const BoxForm = styled.div`
@@ -35,9 +50,11 @@ export const BoxForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-self: center;
+  align-items: center;
+  text-align: left;
   margin: 4px;
   padding: 4px;
-
 `;
 
 export const BotaoDiv = styled.div`
@@ -50,11 +67,11 @@ export const BotaoDiv = styled.div`
   margin: 4px;
   padding: 6px 4px;
 
-  h2{
-    color: #fff
+  h2 {
+    color: #fff;
   }
 
-  :hover{
+  :hover {
     background-color: #f00;
   }
 `;

@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 import Principal from "../PAGES/Principal/Principal";
-import Disciplina from "../PAGES/Disciplina/disciplina";
 import Aluno from "../PAGES/Aluno/aluno";
 import Professor from "../PAGES/Professor/professor";
+import Solicitacao from "../PAGES/Solicitacao/solicitacao";
 
 const Rotas = () => {
 
@@ -16,8 +16,8 @@ const Rotas = () => {
         />
     
         <Route 
-          element={<Disciplina/>}   
-          path="/disciplina" 
+          element={<Solicitacao/>}   
+          path="/solicitacao" 
         />
 
         <Route 
