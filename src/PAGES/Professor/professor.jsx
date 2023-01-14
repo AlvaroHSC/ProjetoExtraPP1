@@ -121,7 +121,7 @@ export default function Professor() {
               <input className="gravar_ apagar_" id="especializacao" />
             </s.InputBox>
             <s.InputBox>
-              <h2>Materias que lesiona:</h2>
+              <h2>Materias que leciona:</h2>
               <input className="gravar_ apagar_" type="text" id="materias" />
             </s.InputBox>
             <s.InputBox>

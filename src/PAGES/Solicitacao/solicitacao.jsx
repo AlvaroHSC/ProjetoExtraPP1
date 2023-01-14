@@ -11,8 +11,8 @@ export default function Solicitacao() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    Pesqlista()
-  }, [])
+    Pesqlista();
+  }, []);
 
   function gravar() {
     let campos = document.querySelectorAll(".gravar_");
@@ -31,14 +31,30 @@ export default function Solicitacao() {
     }
   }
 
+  function selSolicitacao(e) {
+    setExibirLista(true);
+
+    if ((e) != null) {
+      for (const fields in e) {
+        const Valor = e[fields];
+
+        try {
+          document.querySelector(`#${fields}`).value = Valor;
+        } catch (e) {}
+      }
+    }
+    setExibirLista(false);
+  }
+
   async function Pesqlista() {
     try {
-      let respLista = await axios.get("https://api.adviceslip.com/advice");
+      let respLista = await axios.get("https://swapi.dev/api/people/");
 
+      console.log("respLista.data", respLista.data.results);
       if (respLista.data) {
-        setLista([respLista.data.slip]);
+        setLista(respLista.data.results);
       } else {
-        setLista([])
+        setLista([]);
         console.log("falha", respLista.data.mensagem);
       }
     } catch (e) {
@@ -53,18 +69,27 @@ export default function Solicitacao() {
   return (
     <s.Geral>
       <s.PaginaLista onOff={exibirLista}>
-        <img src={Logo} />
-        <h1>Lista de Solicitações</h1>
+        <s.Titulo>
+          <h1>Lista de Solicitações</h1>
+        </s.Titulo>
         <s.Box>
           <s.BoxForm>
-            {
-              lista.map(e => (
-                <s.InputBox>{e?.id} - {e?.advice}
-                </s.InputBox>
-              ))
-
-              }
-              </s.BoxForm>
+            {lista.length > 0 ? (
+              lista.map((e, i) => {
+                return (
+                  <s.card
+                    onClick={() => {
+                      selSolicitacao(e);
+                    }}
+                  >
+                    {e?.name} - {e?.gender}
+                  </s.card>
+                );
+              })
+            ) : (
+              <s.card>NENHUM RESULTADO RETORNADO</s.card>
+            )}
+          </s.BoxForm>
         </s.Box>
         <s.BotaoDiv
           onClick={() => {
@@ -80,6 +105,9 @@ export default function Solicitacao() {
         >
           <h2>VOLTAR</h2>
         </s.BotaoDiv>
+        <s.Rodape>
+          <img src={Logo} />
+        </s.Rodape>
       </s.PaginaLista>
 
       <s.PaginaCad onOff={!exibirLista}>
@@ -93,31 +121,33 @@ export default function Solicitacao() {
             </s.InputBox>
             <s.InputBox>
               <h2>Matéria Solicitada:</h2>
-              <input className="gravar_ apagar_" type="text" id="disciplina" />
+              <input className="gravar_ apagar_" type="text" id="name" />
             </s.InputBox>
             <s.InputBox>
               <h2>Assunto:</h2>
-              <input className="gravar_ apagar_" type="text" id="sobre" />
+              <input className="gravar_ apagar_" type="text" id="gender" />
             </s.InputBox>
             <s.InputBox>
               <h2>Data: </h2>
-              <input className="gravar_ apagar_" type="date" id="sobre" />
+              <input className="gravar_ apagar_" type="date" id="mass" />
             </s.InputBox>
             <s.InputBox>
               <h2>Horário:</h2>
-              <input className="gravar_ apagar_" type="text" id="sobre" />
+              <input className="gravar_ apagar_" type="text" id="height" />
             </s.InputBox>
 
-            <s.BotaoDiv onClick={() => gravar()}>
-              <h2>Gravar</h2>
-            </s.BotaoDiv>
-            <s.BotaoDiv
-              onClick={() => {
-                setExibirLista(true);
-              }}
-            >
-              <h2>Lista</h2>
-            </s.BotaoDiv>
+            <s.BtnRow>
+              <s.BotaoDiv onClick={() => gravar()}>
+                <h2>Gravar</h2>
+              </s.BotaoDiv>
+              <s.BotaoDiv
+                onClick={() => {
+                  setExibirLista(true);
+                }}
+              >
+                <h2>Lista</h2>
+              </s.BotaoDiv>
+            </s.BtnRow>
           </s.BoxForm>
         </s.Box>
       </s.PaginaCad>
