@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import * as s from "./styleSolic";
-import Logo from "./../../img/Logo.png";
-import IFPE from "./../../img/IFPE.png";
-import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Logo from "./../../img/Logo.png";
+import * as s from "./styleSolic";
 
 export default function Solicitacao() {
   const [exibirLista, setExibirLista] = useState(true);
@@ -40,7 +39,7 @@ export default function Solicitacao() {
 
         try {
           document.querySelector(`#${fields}`).value = Valor;
-        } catch (e) {}
+        } catch (e) { }
       }
     }
     setExibirLista(false);
@@ -60,10 +59,6 @@ export default function Solicitacao() {
     } catch (e) {
       console.log("falha", e);
     }
-  }
-
-  function click() {
-    alert("click ");
   }
 
   return (
@@ -106,12 +101,12 @@ export default function Solicitacao() {
           <h2>VOLTAR</h2>
         </s.BotaoDiv>
         <s.Rodape>
-          <img src={Logo} />
+          <img src={Logo} alt="alguma coisa" />
         </s.Rodape>
       </s.PaginaLista>
 
       <s.PaginaCad onOff={!exibirLista}>
-        <img src={Logo} />
+        <img src={Logo} alt="alguma coisa" />
 
         <s.Box>
           <s.BoxForm>
