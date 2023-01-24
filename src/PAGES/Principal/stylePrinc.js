@@ -42,9 +42,11 @@ export const BoxInput = styled.div`
   display: flex;
   margin: 4px; 
   padding: 10px 14px;
+  text-align: center;
+  justify-content: center;
 
   h2{
-    font-size: 12px;
+    font-size: 14px;
     
   }
 `;
