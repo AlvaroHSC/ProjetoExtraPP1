@@ -16,17 +16,37 @@ export const Box = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  margin: 4px;
+  margin: 4px 10px;
   background-image: url(${ProfAluno});
   background-repeat: no-repeat; 
+  background-position: center;
   padding: 10px 14px;
 `;
+
+export const Rodape = styled.div`
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  border: 1px solid #000;
+  text-align: center;
+
+  img{
+    width: 200px;
+    height: auto
+  }
+`;
+
 export const BoxInput = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   margin: 4px; 
   padding: 10px 14px;
+
+  h2{
+    font-size: 12px;
+    
+  }
 `;
 
 export const InputBox = styled.div`
@@ -40,9 +60,8 @@ export const BoxForm = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
-
+  text-align: center;
   flex-direction: column;
-  background-color: ;
   border: 1px solid #000;
   border-radius: 10px;
   margin: 90px;
