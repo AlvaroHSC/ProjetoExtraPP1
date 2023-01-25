@@ -6,6 +6,7 @@ import Aluno from "../PAGES/Aluno/aluno";
 import Professor from "../PAGES/Professor/professor";
 import Solicitacao from "../PAGES/Solicitacao/solicitacao";
 import Cadastro from "../PAGES/Aluno/Cadastro";
+import CadastroProf from "../PAGES/Professor/Cadastro";
 
 const Rotas = () => {
 
@@ -39,6 +40,16 @@ const Rotas = () => {
       <Route
         element={<Professor />}
         path="/professor"
+      />
+
+      <Route
+        element={<CadastroProf />}
+        path="/professor/cadastro"
+      />
+
+      <Route
+        element={<CadastroProf />}
+        path="/professor/cadastro/:id"
       />
     </Routes>
   );

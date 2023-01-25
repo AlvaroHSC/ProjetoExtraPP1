@@ -85,7 +85,20 @@ input{
 }
 `;
 
-export const BoxForm = styled.div`
+export const SelectComponent = styled.select`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+  label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+`;
+
+
+export const BoxForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -97,7 +110,7 @@ export const BoxForm = styled.div`
   padding: 4px;
 `;
 
-export const BotaoDiv = styled.div`
+export const BotaoDiv = styled.button`
   width: 250px;
   height: auto;
   background-color: #000;

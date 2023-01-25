@@ -51,6 +51,52 @@ export const BoxForm = styled.div`
   padding: 4px;
 `;
 
+export const InputRadio = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const SpanError = styled.span`
+  color: #f00;
+`;
+
+export const PaginaLista = styled.div`
+  display: ${props => props.onOff ? 'block' : 'none'};
+  width: 100%;
+  heigth: auto;
+  background-color: #f3f3f3;
+`;
+
+export const Titulo = styled.div`
+  width: 100%;
+  heigth: auto;
+  text-align: center;
+  color: #228b22;
+  background-color: #fff;
+  border-bottom: 1px solid #000;
+`;
+
+export const card = styled.div`
+width: 100%;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+margin: 2px;
+border: 1px solid #000;
+border-radius: 10px;
+padding: 2px;
+
+h2{
+  padding: 0px;
+  margin: 0px;
+  font-size: 10px
+  text-align: left;    
+}
+input{
+  width: 100%
+}
+`;
+
 export const BotaoDiv = styled.div`
   width: 250px;
   height: auto;

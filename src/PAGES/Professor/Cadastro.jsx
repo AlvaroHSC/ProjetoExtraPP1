@@ -2,13 +2,13 @@ import axios from 'axios';
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
-import * as s from "./stylealuno";
+import * as s from "./styleprof";
 
 import { useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import Logo from "./../../img/Logo.png";
 
-export default function Cadastro() {
+export default function CadastroProf() {
   const navigate = useNavigate()
   const { id } = useParams();
   const notify = (mensagem, tipo) => toast(mensagem, { type: tipo });
@@ -17,7 +17,7 @@ export default function Cadastro() {
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:3001/api/aluno/${id}`)
+      axios.get(`http://localhost:3001/api/professor/${id}`)
         .then(resp => {
           if (resp.status === 200) {
             console.log(getValues())
@@ -37,9 +37,12 @@ export default function Cadastro() {
             setValue('cidade', resp.data.endereco.cidade);
             setValue('estado', resp.data.endereco.estado);
 
-            setValue('descricao', resp.data.Curso.descricao);
-            setValue('instituicao', resp.data.Curso.instituicao);
-            setValue('periodo', resp.data.Curso.periodo);
+            setValue('qualificacao', resp.data.Qualificacao.qualificacao);
+            setValue('especializacao', resp.data.Qualificacao.especializacao);
+
+            setValue('descricao', resp.data.Disciplina.descricao);
+            setValue('horaAula', resp.data.Disciplina.horaAula);
+
           }
         })
         .catch(e => {
@@ -100,6 +103,7 @@ export default function Cadastro() {
         <h1>PROFESSOR</h1>
         <s.Box onSubmit={handleSubmit(onSubmit)}>
           <s.BoxForm>
+            <h3>DADOS PESSOAIS</h3>
             <s.InputBox>
               <h2>Nome:</h2>
               <input defaultValue={getValues('nome')} {...register('nome', { required: true })} className="gravar_ apagar_" id="nome" />
@@ -161,22 +165,6 @@ export default function Cadastro() {
           </s.BoxForm>
 
           <s.BoxForm>
-            <h3>INFORMAÇÃO</h3>
-            <s.InputBox>
-              <h2>Curso:</h2>
-              <input defaultValue={getValues('descricao')} {...register('descricao', { required: true })} className="gravar_ apagar_" id="curso" />
-            </s.InputBox>
-            <s.InputBox>
-              <h2>Instituição de Ensino:</h2>
-              <input defaultValue={getValues('instituicao')} {...register('instituicao', { required: true })} className="gravar_ apagar_" id="instituicao" />
-            </s.InputBox>
-            <s.InputBox>
-              <h2>Período:</h2>
-              <input defaultValue={getValues('periodo')} {...register('periodo', { required: true })} className="gravar_ apagar_" type="text" id="periodo" />
-            </s.InputBox>
-          </s.BoxForm>
-
-          <s.BoxForm>
             <h3>ENDEREÇO</h3>
             <s.InputBox>
               <h2>CEP:</h2>
@@ -219,6 +207,32 @@ export default function Cadastro() {
               <input defaultValue={getValues('estado')}  {...register('estado', { required: true })} className="gravar_ apagar_" title="uf:" id="uf" />
             </s.InputBox>
           </s.BoxForm>
+
+          <s.BoxForm>
+            <h3>FORMAÇÃO</h3>
+            <s.InputBox>
+              <h2>Qualificação:</h2>
+              <input defaultValue={getValues('formacao')} {...register('formacao', { required: true })} className="gravar_ apagar_" id="formacao" />
+            </s.InputBox>
+            <s.InputBox>
+              <h2>Especialização:</h2>
+              <input defaultValue={getValues('especializacao')} {...register('especializacao', { required: true })} className="gravar_ apagar_" id="especializacao" />
+            </s.InputBox>
+          </s.BoxForm>
+
+          <s.BoxForm>
+            <h3>DISCIPLINA</h3>
+            <s.InputBox>
+              <h2>Nome da Disciplina:</h2>
+              <input defaultValue={getValues('descricao')} {...register('descricao', { required: true })} className="gravar_ apagar_" id="disciplina" />
+            </s.InputBox>
+            <s.InputBox>
+              <h2>Valor da hora/aula (R$):</h2>
+              <input defaultValue={getValues('horaAula')} {...register('horaAula', { required: true })} className="gravar_ apagar_" id="horaAula" />
+            </s.InputBox>
+          </s.BoxForm>
+
+
           <s.BotaoDiv type="submit"><h2>Salvar</h2></s.BotaoDiv>
           <s.BotaoDiv type="reset"><h2>Novo</h2></s.BotaoDiv>
           <s.BotaoDiv type="reset" onClick={() => navigate(-1)}><h2>Voltar</h2></s.BotaoDiv>

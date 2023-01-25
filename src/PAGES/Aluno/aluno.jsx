@@ -33,7 +33,7 @@ export default function Aluno() {
       }
     }).catch((e) => {
       if (e.response.data.message) notify(e.response.data.message, 'error');
-      else notify('Erro ao excluir aluno', 'error');
+         else notify('Erro ao excluir aluno', 'error');
     });
   }
 

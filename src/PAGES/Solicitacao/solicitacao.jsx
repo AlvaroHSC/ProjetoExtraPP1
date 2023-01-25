@@ -3,11 +3,25 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "./../../img/Logo.png";
 import * as s from "./styleSolic";
+import { useForm } from 'react-hook-form';
 
 export default function Solicitacao() {
+  const { register, getValues, setValue, handleSubmit, formState: { errors } } = useForm({
+    defaultValue: {
+      disciplinaId: 0,
+      assunto: "",
+      horarioAgendado: "",
+      status: "PENDENTE",
+      data: "",
+    }
+  });
   const [exibirLista, setExibirLista] = useState(true);
   const [lista, setLista] = useState([]);
   const navigate = useNavigate();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  }
 
   useEffect(() => {
     Pesqlista();
@@ -44,6 +58,12 @@ export default function Solicitacao() {
     }
     setExibirLista(false);
   }
+
+
+const handleChangeDisciplina = (e) => {
+  setValue('disciplinaId', e.target.value);
+};
+
 
   async function Pesqlista() {
     try {
@@ -109,38 +129,39 @@ export default function Solicitacao() {
         <img src={Logo} alt="alguma coisa" />
 
         <s.Box>
-          <s.BoxForm>
+          <s.BoxForm onSubmit={handleSubmit(onSubmit)}>
+            <h1>Solicitação de Aula</h1>
             <s.InputBox>
-              <h2>ID:</h2>
-              <input className="gravar_ apagar_" id="id" />
-            </s.InputBox>
-            <s.InputBox>
-              <h2>Matéria Solicitada:</h2>
-              <input className="gravar_ apagar_" type="text" id="name" />
+            <h2>Matéria Solicitada:</h2>
+              <s.SelectComponent
+                value={getValues('disciplinaId')}
+                onChange={handleChangeDisciplina}
+              >
+                <option value="0"><em>Selecione a disciplina</em></option>
+                <option value="1">Materia 01</option>
+                <option value="2">Materia 02</option>
+                <option value="3">Materia 03</option>
+              </s.SelectComponent>
             </s.InputBox>
             <s.InputBox>
               <h2>Assunto:</h2>
-              <input className="gravar_ apagar_" type="text" id="gender" />
+              <input {...register('assunto')} className="gravar_ apagar_" type="text" id="assunto" />
             </s.InputBox>
             <s.InputBox>
               <h2>Data: </h2>
-              <input className="gravar_ apagar_" type="date" id="mass" />
+              <input {...register('date')} className="gravar_ apagar_" type="date" id="date" />
             </s.InputBox>
             <s.InputBox>
               <h2>Horário:</h2>
-              <input className="gravar_ apagar_" type="text" id="height" />
+              <input {...register('horarioAgendado')} className="gravar_ apagar_" type="text" id="horario" />
             </s.InputBox>
 
             <s.BtnRow>
-              <s.BotaoDiv onClick={() => gravar()}>
+              <s.BotaoDiv type="submit">
                 <h2>Gravar</h2>
               </s.BotaoDiv>
-              <s.BotaoDiv
-                onClick={() => {
-                  setExibirLista(true);
-                }}
-              >
-                <h2>Lista</h2>
+              <s.BotaoDiv type="reset">
+                <h2>Cancelar</h2>
               </s.BotaoDiv>
             </s.BtnRow>
           </s.BoxForm>
