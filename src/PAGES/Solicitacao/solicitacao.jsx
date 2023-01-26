@@ -126,11 +126,12 @@ const handleChangeDisciplina = (e) => {
       </s.PaginaLista>
 
       <s.PaginaCad onOff={!exibirLista}>
-        <img src={Logo} alt="alguma coisa" />
-
+       
+          <s.Titulo>
+            <h1>Solicitação de Aula</h1>
+        </s.Titulo>
         <s.Box>
           <s.BoxForm onSubmit={handleSubmit(onSubmit)}>
-            <h1>Solicitação de Aula</h1>
             <s.InputBox>
             <h2>Matéria Solicitada:</h2>
               <s.SelectComponent
@@ -166,6 +167,9 @@ const handleChangeDisciplina = (e) => {
             </s.BtnRow>
           </s.BoxForm>
         </s.Box>
+        <s.Rodape>
+          <img src={Logo} />
+        </s.Rodape>
       </s.PaginaCad>
     </s.Geral>
   );

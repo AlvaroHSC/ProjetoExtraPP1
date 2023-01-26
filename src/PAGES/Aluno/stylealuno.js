@@ -49,16 +49,17 @@ export const BtnRow = styled.div`
 `;
 
 export const InputBox = styled.div`
-width: 250px
+width: 250px;
 display: flex;
 flex-direction: column;
 margin: 2px;
+margin-right: 5px;
 padding: 2px;
 
 h2{
   padding: 0px;
   margin: 0px;
-  font-size: 10px
+  font-size: 8px
   text-align: left;    
 }
 input{
@@ -99,14 +100,16 @@ export const InputRadio = styled.div`
 
 export const BoxForm = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
+  wrap: no-wrap;
+  // flex-direction: row;
   justify-content: center;
   align-self: center;
   align-items: center;
   text-align: left;
   margin: 4px;
   padding: 4px;
+  background: #f5f5dc;
 `;
 
 export const BotaoDiv = styled.button`

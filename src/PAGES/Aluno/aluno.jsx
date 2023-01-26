@@ -61,6 +61,7 @@ export default function Aluno() {
             )}
           </s.BoxForm>
         </s.Box>
+        
       </s.PaginaLista>
     </s.Geral>
   );

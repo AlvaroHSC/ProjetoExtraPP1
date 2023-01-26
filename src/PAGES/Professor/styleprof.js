@@ -97,6 +97,15 @@ input{
 }
 `;
 
+export const BtnRow = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 4px;
+  padding: 4px
+`;
+
 export const BotaoDiv = styled.div`
   width: 250px;
   height: auto;
