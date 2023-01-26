@@ -10,7 +10,7 @@ export const Geral = styled.div`
 
 export const PaginaLista = styled.div`
   display: ${props => props.onOff ? 'block' : 'none'};
-  width: 100%;
+  min-width: 100%;
   heigth: auto;
   background-color: #f3f3f3;
 `;
@@ -37,6 +37,10 @@ export const Box = styled.form`
   margin: 4px;
   background-repeat: no-repeat;
   padding: 10px 14px;
+
+  h3 {
+    text-align: center;
+  }
 `;
 
 export const BtnRow = styled.div`
@@ -52,9 +56,8 @@ export const InputBox = styled.div`
 width: 250px;
 display: flex;
 flex-direction: column;
-margin: 2px;
-margin-right: 5px;
-padding: 2px;
+margin: 4px;
+padding: 6px 4px;
 
 h2{
   padding: 0px;
@@ -101,7 +104,7 @@ export const InputRadio = styled.div`
 export const BoxForm = styled.div`
   width: 100%;
   display: inline-flex;
-  wrap: no-wrap;
+  flex-wrap: wrap;
   // flex-direction: row;
   justify-content: center;
   align-self: center;
