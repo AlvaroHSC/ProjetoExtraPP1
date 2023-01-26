@@ -149,6 +149,17 @@ export default function Cadastro() {
             </s.InputBox>
 
             <s.InputBox>
+              <h2>Senha:</h2>
+              <input
+                defaultValue={getValues("senha")}
+                {...register("senha", { required: true })}
+                className="gravar_ apagar_"
+                title="Senha:"
+                id="senha"
+              />
+            </s.InputBox>
+
+            <s.InputBox>
               <h2>Sexo:</h2>
               <s.InputRadio>
                 <div>
@@ -254,7 +265,6 @@ export default function Cadastro() {
             <s.InputBox>
               <h2>CEP:</h2>
               <input
-                mask="99999-999"
                 title="cep"
                 id="cep"
                 onChange={(e) => handleChangeCep(e)}

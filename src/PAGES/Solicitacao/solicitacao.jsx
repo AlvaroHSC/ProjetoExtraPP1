@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import Logo from "./../../img/Logo.png";
 import * as s from "./styleSolic";
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
-export default function Solicitacao() {
+const Solicitacao = () => {
   const { register, getValues, setValue, handleSubmit, formState: { errors } } = useForm({
     defaultValue: {
       disciplinaId: 0,
@@ -13,35 +14,46 @@ export default function Solicitacao() {
       horarioAgendado: "",
       status: "PENDENTE",
       data: "",
+      alunoId:1
     }
   });
   const [exibirLista, setExibirLista] = useState(true);
   const [lista, setLista] = useState([]);
+  const [disciplinas, setDisciplinas] = useState([]);
   const navigate = useNavigate();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  }
+  const notify = (mensagem, tipo) => toast(mensagem, { type: tipo });
 
   useEffect(() => {
-    Pesqlista();
+    function Pesqlista() {
+      axios.get('http://localhost:3001/api/solicitacao').then((response) => {
+        setLista(response.data);
+      }).catch((error) => {
+        console.log("error: " + error);
+        notify('Erro ao obter as solicitações', 'error')
+      });
+    }
+
+    function PesqDisciplinas() {
+      axios.get('http://localhost:3001/api/disciplina').then((response) => {
+        setDisciplinas(response.data);
+      }).catch((error) => {
+        console.log("error: " + error);
+        notify('Erro ao obter as solicitações', 'error')
+      });
+    }
+
+    if (disciplinas.length === 0) PesqDisciplinas();
+    if (lista.length === 0) Pesqlista();
   }, []);
 
-  function gravar() {
-    let campos = document.querySelectorAll(".gravar_");
-
-    let obj = {};
-
-    for (let i = 0; i < campos.length; i++) {
-      const field = campos[i].id;
-      const element = campos[i].value;
-
-      obj = {
-        ids: field,
-        valores: element,
-      };
-      console.log("obj", obj);
-    }
+  const onSubmit = (data) => {
+    axios.post('http://localhost:3001/api/solicitacao', {...data, alunoId: 1}).then((response) => {
+      notify('Solicitação gravada com sucesso', 'success');
+      console.log('response', response)
+    }).catch((err) => {
+      console.log('err', err)
+      notify('Erro ao gravar a solicitação', 'error');
+    })
   }
 
   function selSolicitacao(e) {
@@ -60,30 +72,14 @@ export default function Solicitacao() {
   }
 
 
-const handleChangeDisciplina = (e) => {
-  setValue('disciplinaId', e.target.value);
-};
+  const handleChangeDisciplina = (e) => {
+    setValue('disciplinaId', Number(e.target.value));
+  };
 
-
-  async function Pesqlista() {
-    try {
-      let respLista = await axios.get("https://swapi.dev/api/people/");
-
-      console.log("respLista.data", respLista.data.results);
-      if (respLista.data) {
-        setLista(respLista.data.results);
-      } else {
-        setLista([]);
-        console.log("falha", respLista.data.mensagem);
-      }
-    } catch (e) {
-      console.log("falha", e);
-    }
-  }
 
   return (
     <s.Geral>
-      <s.PaginaLista onOff={exibirLista}>
+      <s.PaginaLista style={{ display: exibirLista ? 'block' : 'none' }}>
         <s.Titulo>
           <h1>Lista de Solicitações</h1>
         </s.Titulo>
@@ -97,7 +93,7 @@ const handleChangeDisciplina = (e) => {
                       selSolicitacao(e);
                     }}
                   >
-                    {e?.name} - {e?.gender}
+                    {e?.assunto} - {e?.Disciplina.descricao} - {e?.status}
                   </s.card>
                 );
               })
@@ -125,23 +121,23 @@ const handleChangeDisciplina = (e) => {
         </s.Rodape>
       </s.PaginaLista>
 
-      <s.PaginaCad onOff={!exibirLista}>
-       
-          <s.Titulo>
-            <h1>Solicitação de Aula</h1>
+      <s.PaginaCad style={{ display: !exibirLista ? 'block' : 'none' }}>
+        <s.Titulo>
+          <h1>Solicitação de Aula</h1>
         </s.Titulo>
         <s.Box>
+
           <s.BoxForm onSubmit={handleSubmit(onSubmit)}>
             <s.InputBox>
-            <h2>Matéria Solicitada:</h2>
+              <h2>Matéria Solicitada:</h2>
               <s.SelectComponent
                 value={getValues('disciplinaId')}
                 onChange={handleChangeDisciplina}
               >
-                <option value="0"><em>Selecione a disciplina</em></option>
-                <option value="1">Materia 01</option>
-                <option value="2">Materia 02</option>
-                <option value="3">Materia 03</option>
+                <option value="0">Selecione a disciplina</option>
+                {disciplinas && disciplinas.map((d) => (
+                  <option key={d.id} value={d.id}>{d.descricao}</option>
+                ))}
               </s.SelectComponent>
             </s.InputBox>
             <s.InputBox>
@@ -150,7 +146,7 @@ const handleChangeDisciplina = (e) => {
             </s.InputBox>
             <s.InputBox>
               <h2>Data: </h2>
-              <input {...register('date')} className="gravar_ apagar_" type="date" id="date" />
+              <input {...register('data')} className="gravar_ apagar_" type="date" id="date" />
             </s.InputBox>
             <s.InputBox>
               <h2>Horário:</h2>
@@ -158,13 +154,10 @@ const handleChangeDisciplina = (e) => {
             </s.InputBox>
 
             <s.BtnRow>
-              <s.BotaoDiv type="submit">
-                <h2>Gravar</h2>
-              </s.BotaoDiv>
-              <s.BotaoDiv type="reset">
-                <h2>Cancelar</h2>
-              </s.BotaoDiv>
+              <s.BotaoDiv type="submit">Gravar</s.BotaoDiv>
+              <s.BotaoDiv type="reset">Cancelar</s.BotaoDiv>
             </s.BtnRow>
+
           </s.BoxForm>
         </s.Box>
         <s.Rodape>
@@ -174,3 +167,5 @@ const handleChangeDisciplina = (e) => {
     </s.Geral>
   );
 }
+
+export default Solicitacao;

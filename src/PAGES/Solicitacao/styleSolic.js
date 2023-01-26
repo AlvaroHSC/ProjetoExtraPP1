@@ -9,14 +9,12 @@ export const Geral = styled.div`
 `;
 
 export const PaginaLista= styled.div`
-  display: ${props => props.onOff ? 'block' : 'none'};
   width: 100%;
   heigth: auto;
   background-color: #f3f3f3;
 `;
 
 export const PaginaCad = styled.div`
-  display: ${props => props.onOff ? 'block' : 'none'};
   width: 100%;
   heigth: auto;
 `;
