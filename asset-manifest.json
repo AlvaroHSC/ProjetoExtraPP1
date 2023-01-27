@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d5e10576.css",
+    "main.js": "/static/js/main.75511a3d.js",
+    "static/js/787.7b63f85e.chunk.js": "/static/js/787.7b63f85e.chunk.js",
+    "static/media/ProfAluno.png": "/static/media/ProfAluno.6390d77e90ff633497da.png",
+    "static/media/IFPE.png": "/static/media/IFPE.aff62ae884a8fc8fee72.png",
+    "index.html": "/index.html",
+    "main.d5e10576.css.map": "/static/css/main.d5e10576.css.map",
+    "main.75511a3d.js.map": "/static/js/main.75511a3d.js.map",
+    "787.7b63f85e.chunk.js.map": "/static/js/787.7b63f85e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d5e10576.css",
+    "static/js/main.75511a3d.js"
+  ]
+}
