@@ -45,11 +45,12 @@ export const BtnRow = styled.div`
   display: flex;
   flex-direction: row;
   margin: 4px;
-  padding: 4px
+  padding: 4px;
 `;
 
 export const InputBox = styled.div`
-width: 250px;
+flex: 1;
+min-width: 250px;
 display: flex;
 flex-direction: column;
 margin: 2px;
@@ -59,7 +60,7 @@ padding: 2px;
 h2{
   padding: 0px;
   margin: 0px;
-  font-size: 8px
+  font-size: 12px;
   text-align: left;    
 }
 input{
@@ -90,7 +91,11 @@ input{
 
 export const Pagina = styled.div`
   width: 100%;
-  heigth: auto;
+  height: auto;
+
+  h3 {
+    text-align: center;
+  }
 `;
 
 export const InputRadio = styled.div`

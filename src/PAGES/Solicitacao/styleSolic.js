@@ -16,7 +16,7 @@ export const PaginaLista= styled.div`
 
 export const PaginaCad = styled.div`
   width: 100%;
-  heigth: auto;
+  height: 100%;
 `;
 
 export const Titulo = styled.div`
@@ -43,20 +43,21 @@ export const BtnRow = styled.div`
   display: flex;
   flex-direction: row;
   margin: 4px;
-  padding: 4px
+  padding: 4px;
 `;
 
 export const InputBox = styled.div`
-width: 250px
+flex: 1;
+min-width: 250px;
 display: flex;
 flex-direction: column;
-margin: 2px;
+margin: 4px;
 padding: 2px;
 
 h2{
   padding: 0px;
   margin: 0px;
-  font-size: 10px
+  font-size: 14px;
   text-align: left;    
 }
 input{
@@ -99,7 +100,8 @@ export const SelectComponent = styled.select`
 export const BoxForm = styled.form`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
   justify-content: center;
   align-self: center;
   align-items: center;
@@ -112,7 +114,10 @@ export const BotaoDiv = styled.button`
   width: 250px;
   height: auto;
   background-color: #000;
+  color: #fff;
+  font-weight: bold;
   border: 1px solid #fff;
+  
   cursor: point;
   border-radius: 10px;
   margin: 4px;

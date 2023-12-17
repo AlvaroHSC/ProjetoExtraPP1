@@ -155,7 +155,7 @@ const Solicitacao = () => {
 
             <s.BtnRow>
               <s.BotaoDiv type="submit">Gravar</s.BotaoDiv>
-              <s.BotaoDiv type="reset">Cancelar</s.BotaoDiv>
+              <s.BotaoDiv onClick={() => { setExibirLista(true) }}>Cancelar</s.BotaoDiv>
             </s.BtnRow>
 
           </s.BoxForm>
