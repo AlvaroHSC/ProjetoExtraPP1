@@ -119,9 +119,10 @@ export default function CadastroProf() {
         <s.Titulo>
           <h1>PROFESSOR</h1>
         </s.Titulo>
+
         <s.Box onSubmit={handleSubmit(onSubmit)}>
+          <h3>DADOS PESSOAIS</h3>
           <s.BoxForm>
-            <h3>DADOS PESSOAIS</h3>
             <s.InputBox>
               <h2>Nome:</h2>
               <input
@@ -191,8 +192,8 @@ export default function CadastroProf() {
             </s.InputBox>
           </s.BoxForm>
 
+          <h3>CONTATOS</h3>
           <s.BoxForm>
-            <h3>CONTATOS</h3>
             <s.InputBox>
               <h2>E-mail:</h2>
               <input
@@ -223,8 +224,8 @@ export default function CadastroProf() {
             </s.InputBox>
           </s.BoxForm>
 
+          <h3>ENDEREÇO</h3>
           <s.BoxForm>
-            <h3>ENDEREÇO</h3>
             <s.InputBox>
               <h2>CEP:</h2>
               <input
@@ -296,8 +297,8 @@ export default function CadastroProf() {
             </s.InputBox>
           </s.BoxForm>
 
+          <h3>FORMAÇÃO</h3>
           <s.BoxForm>
-            <h3>FORMAÇÃO</h3>
             <s.InputBox>
               <h2>Qualificação:</h2>
               <input
@@ -318,8 +319,8 @@ export default function CadastroProf() {
             </s.InputBox>
           </s.BoxForm>
 
+          <h3>DISCIPLINA</h3>
           <s.BoxForm>
-            <h3>DISCIPLINA</h3>
             <s.InputBox>
               <h2>Nome da Disciplina:</h2>
               <input

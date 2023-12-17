@@ -121,7 +121,7 @@ export const BotaoDiv = styled.button`
   cursor: point;
   border-radius: 10px;
   margin: 4px;
-  padding: 6px 4px;
+  padding: 4px;
 
   h2 {
     color: #fff;

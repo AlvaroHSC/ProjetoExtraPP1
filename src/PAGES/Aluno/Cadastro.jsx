@@ -196,7 +196,7 @@ export default function Cadastro() {
             </s.InputBox>
           </s.BoxForm>
 
-            <h3>CONTATOS</h3>
+          <h3>CONTATOS</h3>
           <s.BoxForm>
             <s.InputBox>
               <h2>E-mail:</h2>
@@ -228,7 +228,7 @@ export default function Cadastro() {
             </s.InputBox>
           </s.BoxForm>
 
-            <h3>INFORMAÇÃO</h3>
+          <h3>INFORMAÇÃO</h3>
           <s.BoxForm>
             <s.InputBox>
               <h2>Curso:</h2>
@@ -260,7 +260,7 @@ export default function Cadastro() {
             </s.InputBox>
           </s.BoxForm>
 
-            <h3>ENDEREÇO</h3>
+          <h3>ENDEREÇO</h3>
           <s.BoxForm>
             <s.InputBox>
               <h2>CEP:</h2>
@@ -331,18 +331,19 @@ export default function Cadastro() {
               />
             </s.InputBox>
           </s.BoxForm>
-          <s.BotaoDiv type="submit">
-            <h2>Salvar</h2>
-          </s.BotaoDiv>
-          <s.BotaoDiv type="reset">
-            <h2>Novo</h2>
-          </s.BotaoDiv>
-          <s.BotaoDiv type="reset" onClick={() => navigate(-1)}>
-            <h2>Voltar</h2>
-          </s.BotaoDiv>
-          <s.Rodape>
-            <img src={Logo} />
-          </s.Rodape>
+
+            <s.BotaoDiv type="submit">
+              <h2>Salvar</h2>
+            </s.BotaoDiv>
+            <s.BotaoDiv type="reset">
+              <h2>Novo</h2>
+            </s.BotaoDiv>
+            <s.BotaoDiv type="reset" onClick={() => navigate(-1)}>
+              <h2>Voltar</h2>
+            </s.BotaoDiv>
+            <s.Rodape>
+              <img src={Logo} />
+            </s.Rodape>
         </s.Box>
       </s.Pagina>
     </s.Geral>

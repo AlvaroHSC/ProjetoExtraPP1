@@ -46,24 +46,29 @@ export default function Principal() {
           <img src={Logo} />
         </s.Rodape>
         <s.Box>
+          <s.BoxImg />
           <s.BoxForm>
             <h1>LOGIN</h1>
 
             <s.BoxInput>
-              <h2>ALUNO</h2>
-              <input
-                type="radio"
-                id="aluno"
-                name="cad"
-                onClick={() => changeModel("aluno")}
-              />
-              <h2>PROFESSOR</h2>
-              <input
-                type="radio"
-                id="professor"
-                name="cad"
-                onClick={() => changeModel("professor")}
-              />
+              <s.RadioInput>
+                <h2>ALUNO</h2>
+                <input
+                  type="radio"
+                  id="aluno"
+                  name="cad"
+                  onClick={() => changeModel("aluno")}
+                />
+              </s.RadioInput>
+              <s.RadioInput>
+                <h2>PROFESSOR</h2>
+                <input
+                  type="radio"
+                  id="professor"
+                  name="cad"
+                  onClick={() => changeModel("professor")}
+                />
+              </s.RadioInput>
             </s.BoxInput>
 
             <s.InputBox>
@@ -76,7 +81,10 @@ export default function Principal() {
             <button onClick={() => click()}>
               <div>Logar</div>
             </button>
-            <button onClick={() => cadastrar()}>Cadastrar-se</button>
+
+            <button className="cadastrar" onClick={() => cadastrar()}>
+              Cadastrar-se
+            </button>
           </s.BoxForm>
         </s.Box>
 
